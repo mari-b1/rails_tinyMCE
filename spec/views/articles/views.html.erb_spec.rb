@@ -30,16 +30,18 @@ RSpec.describe 'articles/views' do
   end
 
   describe 'index' do
-    let(:article1) { create(:article, title: 'MyTitle', body: 'MyText') }
-    let(:article2) { create(:article, title: 'MyTitle', body: 'MyText') }
+    let(:articles) { create_list(:article, 10) }
 
-    before { assign(:articles, [article1, article2]) }
+    before do
+      assign(:articles, articles)
+      assign(:pagy, Pagy.new(count: 10, size: [1, 2, 2, 1], items: 1))
+    end
 
     it 'renders a list of articles' do
       render template: 'articles/index'
-      cell_selector = Rails::VERSION::STRING >= '7' ? 'div>div>p' : 'tr>td'
-      assert_select cell_selector, text: Regexp.new('MyTitle'.to_s), count: 2
-      assert_select cell_selector, text: Regexp.new('MyText'.to_s), count: 2
+      cell_selector = Rails::VERSION::STRING >= '7' ? 'ul.pagination-list' : 'tr>td'
+      assert_select cell_selector, text: Regexp.new('\d'.to_s), count: 1
+      assert_select cell_selector, text: Regexp.new('page 10'.to_s), count: 1
     end
   end
 

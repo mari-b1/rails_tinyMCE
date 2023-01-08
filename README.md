@@ -10,10 +10,23 @@ This is working example Rails 7 with turbo and tinymce-rails
 * tinymce-rails-langs (6.20220429)
 * turbo-rails (1.3.2)
 
+## Install
+
+```console
+% git clone git@github.com:sergey-arkhipov/rails_tinyMCE.git
+ 
+% copy config/database.yml.example config/database.yml
+
+% bundle install
+
+% rails db:create db:migrate db:seed
+```
+
+
 ## How to run the test suite
 
 ```console
-bundle exec rspec -f d
+% bundle exec rspec -f d
 ```
 
 ## Description
