@@ -22,7 +22,6 @@ This is working example Rails 7 with turbo and tinymce-rails
 % rails db:create db:migrate db:seed
 ```
 
-
 ## How to run the test suite
 
 ```console
